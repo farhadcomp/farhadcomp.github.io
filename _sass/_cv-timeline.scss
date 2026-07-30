@@ -1,0 +1,37 @@
+/*******************************************************************************
+ * CV timeline: left-align the date badge and location text.
+ *
+ * al_folio_core's `.date-column` (_components.scss) is centered via the
+ * Bootstrap `.text-center` utility class applied in the al_folio_cv gem's
+ * education/experience templates, and nudged left by a fixed
+ * `translateX(-15px)` to compensate. That offset assumes a fixed-width
+ * badge, so a longer location string (e.g. "Deggendorf, Germany") widens
+ * the column's content and shifts the badge further right than shorter
+ * ones. Left-aligning removes the content-width dependency entirely.
+ ******************************************************************************/
+
+.date-column.text-center {
+  text-align: left !important;
+}
+
+.date-column {
+  transform: translateY(-5px);
+
+  // al_folio_core fixes this column at `width: 75px`, but the al_folio_cv
+  // gem's `p.location` (assets/css/al-folio-cv.css) sets `white-space: nowrap`,
+  // so a long location string (e.g. "Deggendorf, Germany") overflows the
+  // column instead of wrapping and collides with the content column next to
+  // it. Force the table to respect the column's fixed width and let the
+  // location text wrap onto additional lines instead of overflowing --
+  // preferred over widening the column so the layout doesn't shift on
+  // narrow screens.
+  table.table-cv {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  p.location {
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+}
