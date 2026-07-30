@@ -2,46 +2,30 @@
 layout: page
 permalink: /repositories/
 title: repositories
-description: GitHub profile and selected project repositories.
+description: Selected project repositories.
 nav: true
 nav_order: 4
 ---
 
-{% if site.data.repositories.github_users %}
-
-## GitHub users
-
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
-  {% for user in site.data.repositories.github_users %}
-    {% include repository/repo_user.liquid username=user %}
-  {% endfor %}
-</div>
-
----
-
-{% if site.repo_trophies.enabled %}
-{% for user in site.data.repositories.github_users %}
-{% if site.data.repositories.github_users.size > 1 %}
-
-  <h4>{{ user }}</h4>
-  {% endif %}
-  <div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
-  {% include repository/repo_trophies.liquid username=user %}
+<div class="repositories">
+  <div class="row row-cols-1 row-cols-md-3">
+    {% for repo in site.data.repositories.repos %}
+      <div class="col">
+        <a href="{{ repo.url }}" target="_blank" rel="noopener noreferrer">
+          <div class="card h-100 hoverable">
+            <div class="card-body">
+              <h2 class="card-title">{{ repo.name }}</h2>
+              <p class="card-text">{{ repo.description }}</p>
+              <div class="row ml-1 mr-1 p-0 align-items-center justify-content-between">
+                {% if repo.language %}
+                  <span class="language-badge">{{ repo.language }}</span>
+                {% endif %}
+                <i class="fa-brands fa-github gh-icon"></i>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endfor %}
   </div>
-
----
-
-{% endfor %}
-{% endif %}
-{% endif %}
-
-{% if site.data.repositories.github_repos %}
-
-## GitHub Repositories
-
-<div class="repositories d-flex flex-wrap flex-md-row flex-column justify-content-between align-items-center">
-  {% for repo in site.data.repositories.github_repos %}
-    {% include repository/repo.liquid repository=repo %}
-  {% endfor %}
 </div>
-{% endif %}

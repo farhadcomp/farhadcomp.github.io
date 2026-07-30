@@ -1,9 +1,12 @@
-github_users:
-  - farhadcomp
+# Static repository cards for the /repositories/ page. No external image
+# services are used -- see _pages/repositories.md.
+repos:
+  - name: farhadcomp.github.io
+    url: https://github.com/farhadcomp/farhadcomp.github.io
+    description: Source for this site, built with Jekyll and al-folio.
+    language: HTML
 
-repo_description_lines_max: 2
-
-github_repos:
-  - farhadcomp/farhadcomp.github.io
-  - farhadcomp/ksz_adv
-  - farhadcomp/ksz-swin
+  - name: ksz-swin
+    url: https://github.com/farhadcomp/ksz-swin
+    description: A Bayesian approach to Swin Transformer models for cosmological data.
+    language: Python
