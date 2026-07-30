@@ -1,0 +1,45 @@
+/*******************************************************************************
+ * Repositories page: static cards (no external image services).
+ *
+ * al_folio_core's `.projects .card` styling doesn't set an explicit
+ * background/border, so it just inherits Bootstrap's card defaults rather
+ * than the theme's light/dark tokens. Mirror the approach `.cv .card`
+ * already uses (_components.scss) so these cards respect the theme in
+ * both modes.
+ ******************************************************************************/
+
+.repositories {
+  a {
+    text-decoration: none;
+  }
+
+  .card {
+    background-color: var(--global-card-bg-color);
+    border: 1px solid var(--global-divider-color);
+
+    &:hover .card-title {
+      color: var(--global-theme-color);
+    }
+  }
+
+  // Long repo names (e.g. "farhadcomp.github.io") otherwise overflow the
+  // card and get clipped at the right edge -- wrap instead of clipping.
+  .card-title {
+    overflow-wrap: break-word;
+  }
+
+  .language-badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--global-card-bg-color);
+    background-color: var(--global-theme-color);
+  }
+
+  .gh-icon {
+    color: var(--global-text-color-light);
+    font-size: 1.1rem;
+  }
+}
